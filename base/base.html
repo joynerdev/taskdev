@@ -1,0 +1,45 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <title>Tareas</title>
+
+        <!-- Icon Page -->
+        <link rel="icon" type="image/x-icon" href="{% static 'ico/favicon.ico' %}" />
+        
+        
+        <!-- Core Bootstrap -->
+        <link rel="stylesheet" href="{% static 'libs/bootstrap/css/bootstrap.min.css' %}">
+
+        <!-- Fonts  -->
+        <link rel="stylesheet" href="{% static 'fonts/nunito/nunito.css' %}">
+        <link rel="stylesheet" href="{% static 'fonts/fontawesome/fontawesome.css' %}">
+
+        <!-- Custom Styles -->
+        <link rel="stylesheet" href="{% static 'css/custom.css' %}">
+    </head>
+
+    <body>
+        <main>
+            <!-- NavBar -->
+            {% include 'layouts/navbar_welcome.html' %}
+            <!-- End NavBar -->
+
+            <!-- Content Page -->
+            {% block content %}
+                
+            {% endblock %}
+        </main>
+
+
+
+
+        <h1>Hello, world! <i class="far fa-gem"></i></h1>
+
+        <!-- SCRIPTS -->
+        <!-- Core Bootstrap -->
+        <script src="{% static 'libs/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+    </body>
+</html>
