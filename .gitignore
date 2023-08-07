@@ -32,5 +32,4 @@ Thumbs.db
 **/*.pyc
 
 # Ignorar archivos específicos
-iniciar_sesion/__pycache__/
 db.sqlite3
