@@ -7,3 +7,13 @@ class User(AbstractUser):
     image = models.ImageField(verbose_name="Imagen de perfil", upload_to="profile_img")
     nick = models.CharField(verbose_name="Apodo", max_length=50)
     bio = models.TextField(verbose_name="Descripcion o motivos de registro")
+
+    class Meta:
+        db_table = "user"
+        managed = True
+        verbose_name = "user"
+        verbose_name_plural = "users"
+        ordering = ["id"]
+
+    def __str__(self):
+        return self.name
