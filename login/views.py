@@ -6,6 +6,14 @@ from django.views.generic import CreateView, TemplateView, UpdateView
 from .forms import RegisterProfileForm
 
 
+# Vista de Inicio de Sesion
+class SignInView(LoginView):
+    template_name = 'login.html'
+    redirect_authenticated_user = True
+
+class SignOutView(LogoutView):
+    pass
+
 class RegisterProfile(TemplateView):
     template_name = 'register.html'
     
