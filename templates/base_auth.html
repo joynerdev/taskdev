@@ -1,0 +1,60 @@
+{% load static %}
+
+
+<!DOCTYPE html>
+<html lang="es" class="light-style customizer-hide" dir="ltr" data-theme="theme-default" data-assets-path="../assets/" data-template="vertical-menu-template-free">
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0" />
+		<title>{{ app_name }}</title>
+        
+		<!-- Icon Page -->
+        <link rel="icon" type="image/x-icon" href="{% static 'ico/favicon.ico' %}" />
+
+		<!-- Fonts -->
+        <link rel="stylesheet" href="{% static 'fonts/publicsans/publicsans.css' %}">
+        <link rel="stylesheet" href="{% static 'fonts/fontawesome/fontawesome.css' %}">
+
+		<!-- Core CSS -->
+		<link rel="stylesheet" href=" {% static 'libs/sneat/vendor/css/core.css' %}" class="template-customizer-core-css" />
+		<link rel="stylesheet" href="{% static 'libs/sneat/vendor/css/theme-default.css' %}" class="template-customizer-theme-css" />
+		<link rel="stylesheet" href="{% static 'libs/sneat/css/demo.css' %}" />
+
+        <!-- Libs -->
+		<link rel="stylesheet" href="{% static 'libs/perfect-scrollbar/perfect-scrollbar.css' %} " />
+
+        <!--Style Page-->
+		<link rel="stylesheet" href="{% static 'libs/sneat/vendor/css/pages/page-auth.css' %}" />
+
+		<!-- Helpers -->
+		<script src="{% static 'libs/sneat/vendor/js/helpers.js' %}"></script>
+		<script src="{% static 'libs/sneat/js/config.js' %}"></script>
+	</head>
+
+	<body>
+		<!-- Content -->
+		<div class="container-xxl">
+
+
+			
+			{% block content %}
+				
+			{% endblock %}
+				
+			
+		</div>
+		
+		<!-- Core JS -->
+		<!-- build:js assets/vendor/js/core.js -->
+		<script src="{% static 'libs/jquery/jquery.js' %}"></script>
+		<script src="{% static 'libs/popper/popper.js' %}"></script>
+		<script src="{% static 'libs/sneat/vendor/js/bootstrap.js' %}"></script>
+		<script src="{% static 'libs/perfect-scrollbar/perfect-scrollbar.js' %}"></script>
+		<script src="{% static 'libs/sneat/vendor/js/menu.js' %}"></script>
+		<!-- endbuild -->
+		<!-- Vendors JS -->
+		<!-- Main JS -->
+		<script src="{% static 'libs/sneat/js/main.js' %}"></script>
+		<!-- Page JS -->
+	</body>
+</html>

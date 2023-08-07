@@ -1,0 +1,83 @@
+{% extends 'base_auth.html' %}
+
+{% load static %}
+{% load widget_tweaks %}
+
+
+{% block content %}
+<form id="formAccountSettings" method="POST" onsubmit="return false">
+	<div class="row">
+		<div class="col-md-12 mt-5">
+			<div class="card mb-4">
+				<h5 class="card-header">Ultimos ajustes a tu perfil 👷</h5>
+
+				<!--Photo profile-->
+				<div class="card-body">
+					<div class="d-flex align-items-start align-items-sm-center gap-4">
+						<img src="{% static 'img/profile_default.png' %}" alt="user-avatar" class="d-block rounded" height="100" width="100" id="uploadedAvatar">
+						<div class="button-wrapper">
+							<h5 >¡Hola @Usuario!</h5>
+							<label for="upload" class="btn btn-primary me-2 mb-4" tabindex="0">
+							<span class="d-none d-sm-block">Subir foto</span>
+							<i class="bx bx-upload d-block d-sm-none">Subir foto</i>
+							<input type="file" id="upload" class="account-file-input" hidden="" accept="image/png, image/jpeg">
+							</label>
+							<p class="text-muted mb-0">Puedes subir tu foto solo en estos formatos JPG or PNG</p>
+						</div>
+					</div>
+				</div>
+				<!--End Photo profile-->
+
+				<hr class="my-0">
+
+				<div class="card-body">
+                    <div class="row mb-3">
+                        <div class="col-12">
+                            <div class="alert alert-dark mb-0" role="alert">
+                                <h6 class="alert-heading fw-bold mb-1">Tenemos algo que decirte</h6>
+							    <p class="mb-0">En estas versiones preeliminares el nombre no se usara en ninguna parte de la app, en futuras actualizaciones puede que si</p>
+							    <p class="mb-0">En todo momento te notificaremos como tratamos tus datos</p>
+							    <p class="mb-0">Cosas mejores nos esperan.... </p>
+                            </div>
+                        </div>
+                    </div>
+					<div class="row">
+                        
+						<div class="mb-3 col-md-6">
+							<label for="firstName" class="form-label">Nombre (Requerido)</label>
+							<input class="form-control" type="text" id="firstName" name="firstName" placeholder="¿Petunio?" autofocus="">
+						</div>
+
+						<div class="mb-3 col-md-6">
+							<label for="lastName" class="form-label">Apellido (Opcional)</label>
+							<input class="form-control" type="text" name="lastName" id="lastName" placeholder="¿Apellido? ¿Con que se come eso?">
+						</div>
+
+                        <div class="mb-3 col-md-6">
+							<label for="lastName" class="form-label">Apodo (Opcional)</label>
+							<input class="form-control" type="text" name="lastName" id="lastName" placeholder="¿Tienes un buen apodo?">
+						</div>
+						
+						<div class="mb-3 col-md-6">
+							<label for="state" class="form-label">Cuentanos mas sobre ti (Opcional) <i class="far fa-face-grin-tongue"></i></label>
+							<input class="form-control" type="text" id="state" name="state" placeholder="¿Las razones por las cuales te uniste? o ¡algo genial que contar!">
+						</div>
+
+					</div>
+                    <div class="mb-3 col-12 mb-0">
+						<div class="alert alert-success">
+							<h6 class="alert-heading fw-bold mb-1">Algo importante!</h6>
+							<p class="mb-0">No introduzcas datos delicados, puesto que estamos en los inicios. Prometemos trabajar aun mas en la seguridad de nuestro sitio</p>
+						</div>
+					</div>
+					<div class="mt-2">
+						<button type="submit" class="btn btn-primary me-2">Guardar perfil</button>
+					</div>
+				</div>
+				<!-- /Account -->
+			</div>
+        </div>
+    </div>
+</form>
+{% endblock content %}
+    

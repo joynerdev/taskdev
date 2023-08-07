@@ -1,0 +1,36 @@
+# Archivos y carpetas generados por entornos virtuales
+venv/
+virtualenv/
+
+# Archivos de caché de Python
+__pycache__/
+*.py[cod]
+*_initial.py
+
+# Archivos compilados de Python
+*.pyc
+*.pyo
+*.pyd
+
+# Carpetas de registros y logs
+logs/
+*.log
+
+# Archivos de bases de datos SQLite
+*.sqlite3
+
+# Carpetas y archivos de IDEs específicos (por ejemplo, Visual Studio Code, PyCharm)
+.vscode/
+.idea/
+
+# Archivos de sistema operativo
+.DS_Store
+Thumbs.db
+
+# Ignorar archivos .pyc en las apps
+**/*/__pycache__/
+**/*.pyc
+
+# Ignorar archivos específicos
+iniciar_sesion/__pycache__/
+db.sqlite3

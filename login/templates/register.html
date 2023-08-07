@@ -1,0 +1,67 @@
+{% extends 'base_auth.html' %}
+
+{% load static %}
+{% load widget_tweaks %}
+
+{% block content %}
+<div class="authentication-wrapper authentication-basic container-p-y">
+    <div class="authentication-inner">
+        <!-- Register Card -->
+        <div class="card">
+            <div class="card-body">
+                <!-- Logo -->
+                <div class="app-brand justify-content-center">
+                    <a href="javascript:void(0)" class="app-brand-link gap-2">
+                        <span class="app-brand-logo demo">
+                            <img width="35" src="{% static 'ico/favicon.ico' %}" alt="logo">
+                        </span>
+                        <span class="app-brand-text demo text-body fw-bolder">TaskDev</span>
+                    </a>
+                </div>
+                <!-- /Logo -->
+
+                <!-- Title App-->
+                <h4 class="mb-2">Organízate con estilo. 😎</h4>
+                <p class="mb-4">Registrarte representa la magia de planificar tu tiempo</p>
+                <!-- End Title App-->
+
+                <!-- Register Form -->
+                <form action=""  class="mb-3" method="POST">
+                    {% csrf_token %}
+                    {% for field in form_register %}
+
+                        <div class="mb-3 {% if field.label == 'Contraseña (confirmación)' or field.label == 'Contraseña' %} form-password-toggle {% endif %} ">
+                            <label class="form-label">{{ field.label }}</label>
+
+                            <div class="input-group input-group-merge">
+                                {{ field|add_class:'form-control'|attr:'autocomplete:off' }}
+                                {% if field.label == 'Contraseña (confirmación)' or field.label == 'Contraseña' %}
+                                <span class="input-group-text cursor-pointer"><i class="fas fa-eye"></i></span>
+                                {% endif %}
+                                {% if field.help_text %}
+                                <button type="button" class="btn btn-outline-primary btn-icon" data-bs-toggle="tooltip" data-bs-offset="0,4" 
+                                data-bs-placement="top" data-bs-html="true" title=""
+                                data-bs-original-title="{{ field.help_text }}">
+                                    <i class="fas fa-question"></i>
+                                </button>
+                                {% endif %}
+                              </div>
+                        </div>
+                    {% endfor %}
+                    
+                    <button class="btn btn-primary d-grid w-100">Registrarme</button>
+                </form>
+                <!-- End Register Form -->
+                
+                <p class="text-center">
+                    <span>¿Ya tienes una cuenta?</span>
+                    <a href="auth-login-basic.html">
+                    <span>Inicia sesion</span>
+                    </a>
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+    
