@@ -39,7 +39,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'widget_tweaks',
     'home',
-    'login'
+    'login',
+    'user_profile'
 ]
 
 
@@ -139,3 +140,6 @@ LOGOUT_REDIRECT_URL = '/login/'
 # Settings Media Images
 MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR / "media"
+
+# Model default
+AUTH_USER_MODEL = 'user_profile.User'
