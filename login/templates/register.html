@@ -11,7 +11,7 @@
             <div class="card-body">
                 <!-- Logo -->
                 <div class="app-brand justify-content-center">
-                    <a href="javascript:void(0)" class="app-brand-link gap-2">
+                    <a href="{% url 'home:home' %}" class="app-brand-link gap-2">
                         <span class="app-brand-logo demo">
                             <img width="35" src="{% static 'ico/favicon.ico' %}" alt="logo">
                         </span>
@@ -28,34 +28,63 @@
                 <!-- Register Form -->
                 <form action=""  class="mb-3" method="POST">
                     {% csrf_token %}
-                    {% for field in form_register %}
+                    {% for field in form %}
 
                         <div class="mb-3 {% if field.label == 'Contraseña (confirmación)' or field.label == 'Contraseña' %} form-password-toggle {% endif %} ">
                             <label class="form-label">{{ field.label }}</label>
-
+                            
+                            {% if field.help_text or field.label == 'Contraseña (confirmación)' or field.label == 'Contraseña' %}
+                                
                             <div class="input-group input-group-merge">
+                                
+                                {% if field.errors %}
+                                {{ field|add_class:'form-control is-invalid'|attr:'autocomplete:off' }}
+                                {% else %}
                                 {{ field|add_class:'form-control'|attr:'autocomplete:off' }}
-                                {% if field.label == 'Contraseña (confirmación)' or field.label == 'Contraseña' %}
-                                <span class="input-group-text cursor-pointer"><i class="fas fa-eye"></i></span>
                                 {% endif %}
-                                {% if field.help_text %}
+                                    
+                                {% if field.label == 'Contraseña (confirmación)' or field.label == 'Contraseña' %}
+                                    <span class="input-group-text cursor-pointer"><i class="fas fa-eye"></i></span>
+                                {% endif %}
                                 <button type="button" class="btn btn-outline-primary btn-icon" data-bs-toggle="tooltip" data-bs-offset="0,4" 
                                 data-bs-placement="top" data-bs-html="true" title=""
                                 data-bs-original-title="{{ field.help_text }}">
                                     <i class="fas fa-question"></i>
                                 </button>
+                                
+                                {% if field.errors %}
+                                <div class="invalid-feedback">
+                                {% for error in field.errors %}
+                                    {{ error }}
+                                {% endfor %}
+                                </div>
                                 {% endif %}
-                              </div>
+                            </div>
+
+                            {% else %}
+                            {% if field.errors %}
+                            {{ field|add_class:'form-control is-invalid'|attr:'autocomplete:off' }}
+                            {% else %}
+                            {{ field|add_class:'form-control'|attr:'autocomplete:off' }}
+                            {% endif %}
+                            {% if field.errors %}
+                            <div class="invalid-feedback">
+                            {% for error in field.errors %}
+                                {{ error }}
+                            {% endfor %}
+                            </div>
+                            {% endif %}
+                            {% endif %}
                         </div>
                     {% endfor %}
                     
-                    <button class="btn btn-primary d-grid w-100">Registrarme</button>
+                    <button type="submit" class="btn btn-primary d-grid w-100">Registrarme</button>
                 </form>
                 <!-- End Register Form -->
                 
                 <p class="text-center">
                     <span>¿Ya tienes una cuenta?</span>
-                    <a href="auth-login-basic.html">
+                    <a href="{% url 'login:loginProfile' %}">
                     <span>Inicia sesion</span>
                     </a>
                 </p>
