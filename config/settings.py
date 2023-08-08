@@ -40,7 +40,8 @@ INSTALLED_APPS = [
     'widget_tweaks',
     'home',
     'login',
-    'user_profile'
+    'user_profile',
+    'functions'
 ]
 
 
