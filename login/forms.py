@@ -1,5 +1,5 @@
 from django import forms
-from django.contrib.auth.models import User
+from user_profile.models import User
 from django.contrib.auth.forms import UserCreationForm
 
 class LoginForm(forms.Form):
@@ -10,3 +10,13 @@ class RegisterProfileForm(UserCreationForm):
     class Meta:
         model = User
         fields = ['username', 'email', 'password1', 'password2']
+
+class SecondStepRegisterForm(forms.ModelForm):
+    class Meta:
+        model = User
+        fields = ['first_name', 'last_name', 'image', 'nick', 'bio']
+
+        # Se reemplaza el TextArea por un campo de texto normal
+        widgets = {
+            'bio': forms.TextInput(),
+        }
