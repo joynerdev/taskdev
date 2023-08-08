@@ -31,5 +31,9 @@ Thumbs.db
 **/*/__pycache__/
 **/*.pyc
 
+# Ignorar imagenes de la carpeta de imagenes de perfil
+media/profile_img/*.jpg
+media/profile_img/*.png
+
 # Ignorar archivos específicos
 db.sqlite3
