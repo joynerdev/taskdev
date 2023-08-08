@@ -5,22 +5,24 @@
 
 
 {% block content %}
-<form id="formAccountSettings" method="POST" onsubmit="return false" enctype="multipart/form-data">
+
+<form method="POST" action="" enctype="multipart/form-data">
+	{% csrf_token %}
 	<div class="row">
 		<div class="col-md-12 mt-5">
 			<div class="card mb-4">
-				<h5 class="card-header">Ultimos ajustes a tu perfil 👷</h5>
+				<h5 class="card-header">{{ title_container }}</h5>
 
 				<!--Photo profile-->
 				<div class="card-body">
 					<div class="d-flex align-items-start align-items-sm-center gap-4">
-						<img src="{% static 'img/profile_default.png' %}" alt="user-avatar" class="d-block rounded" height="100" width="100" id="uploadedAvatar">
+						<img src="{% if user.image %} {{ user.image.url }} {% else %} {% static 'img/profile_default.png' %} {% endif %} " alt="user-avatar" class="d-block rounded" height="100" width="100" id="uploadedAvatar">
 						<div class="button-wrapper">
-							<h5 >¡Hola @Usuario!</h5>
-							<label for="upload" class="btn btn-primary me-2 mb-4" tabindex="0">
-							<span class="d-none d-sm-block">Subir foto</span>
-							<i class="bx bx-upload d-block d-sm-none">Subir foto</i>
-							<input type="file" id="upload" class="account-file-input" hidden="" onchange="previewImage(event, '#uploadedAvatar')" accept="image/png, image/jpeg">
+							<h5 >¡Hola @{{ user.username }}!</h5>
+							<label for="upload" class="btn btn-primary me-2 mb-4" tabindex="0" id="profile_img_upload">
+								<span class="d-none d-sm-block">Subir foto</span>
+								<i class="bx bx-upload d-block d-sm-none">Subir foto</i>
+								{{ form.image|attr:"onchange:previewImage(event, '#uploadedAvatar')"|attr:"accept:image/png, image/jpeg"|attr:"id:upload"|attr:"hidden:"}}
 							</label>
 							<p class="text-muted mb-0">Puedes subir tu foto solo en estos formatos JPG or PNG</p>
 						</div>
@@ -44,23 +46,23 @@
 					<div class="row">
                         
 						<div class="mb-3 col-md-6">
-							<label for="firstName" class="form-label">Nombre (Requerido)</label>
-							<input class="form-control" type="text" id="firstName" name="firstName" placeholder="¿Petunio?" required autofocus="">
+							<label  class="form-label">Nombre (Requerido)</label>
+							{{ form.first_name|add_class:'form-control'|attr:'placeholder:¿Petunio? '|attr:'required:'|attr:'autofocus:'|attr:'autocomplete:off' }}
 						</div>
 
 						<div class="mb-3 col-md-6">
-							<label for="lastName" class="form-label">Apellido (Opcional)</label>
-							<input class="form-control" type="text" name="lastName" id="lastName" placeholder="¿Apellido? ¿Con que se come eso?">
+							<label  class="form-label">Apellido (Opcional)</label>
+							{{ form.last_name|add_class:'form-control'|attr:'placeholder:¿Apellido? ¿Con que se come eso?'|attr:'tabindex:"1"'|attr:'autocomplete:off' }}
 						</div>
 
                         <div class="mb-3 col-md-6">
-							<label for="lastName" class="form-label">Apodo (Opcional)</label>
-							<input class="form-control" type="text" name="lastName" id="lastName" placeholder="¿Tienes un buen apodo?">
+							<label  class="form-label">Apodo (Opcional)</label>
+							{{ form.nick|add_class:'form-control'|attr:'placeholder:¿Tienes un buen apodo?'|attr:'tabindex:"2"'|attr:'autocomplete:off' }}
 						</div>
 						
 						<div class="mb-3 col-md-6">
-							<label for="state" class="form-label">Cuentanos mas sobre ti (Opcional) <i class="far fa-face-grin-tongue"></i></label>
-							<input class="form-control" type="text" id="state" name="state" placeholder="¿Las razones por las cuales te uniste? o ¡algo genial que contar!">
+							<label  class="form-label">Cuentanos mas sobre ti (Opcional) <i class="far fa-face-grin-tongue"></i></label>
+							{{ form.bio|add_class:'form-control'|attr:'placeholder:¿Las razones por las cuales te uniste? o ¡algo genial que contar!'|attr:'tabindex:"3"'|attr:'autocomplete:off' }}
 						</div>
 
 					</div>
@@ -106,6 +108,15 @@
 			$imgPreview.src = objectURL;
 						
 		}
+
+		$('#profile_img_upload a').remove()
+		$('#profile_img_upload br').remove()
+		$('#profile_img_upload #image-clear_id').remove()
+		$('#profile_img_upload label').remove()
+		$('#profile_img_upload').contents().filter(function() {
+			return this.nodeType === 3;
+		}).remove();
+
 	</script>
 
 {% endblock %}
