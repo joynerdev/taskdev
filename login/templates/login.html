@@ -1,0 +1,93 @@
+{% extends 'base_auth.html' %}
+
+{% load static %}
+{% load widget_tweaks %}
+
+{% block content %}
+<div class="authentication-wrapper authentication-basic container-p-y">
+	<div class="authentication-inner">
+		<!-- Login -->
+		<div class="card">
+			<div class="card-body">
+
+				<!-- Logo -->
+                <div class="app-brand justify-content-center">
+                    <a href="{% url 'home:home' %}" class="app-brand-link gap-2">
+                        <span class="app-brand-logo demo">
+                            <img width="35" src="{% static 'ico/favicon.ico' %}" alt="logo">
+                        </span>
+                        <span class="app-brand-text demo text-body fw-bolder">TaskDev</span>
+                    </a>
+                </div>
+                <!-- /Logo -->
+
+                <!-- Title App-->
+                <h4 class="mb-2">Inicio de sesion</h4>
+                <p class="mb-4">Tu tiempo es un tesoro 💎… Así que, aprovechalo al maximo 🤘</p>
+                <!-- End Title App-->
+
+                {% for _, error_list in form.errors.items %}
+                        {% for error in error_list %}
+                            <div class="alert alert-danger alert-dismissible" role="alert">
+                                {{ error }}
+                                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                            </div>
+                        {% endfor %}
+                    {% endfor %}
+
+
+                <!-- Login Form -->
+                <form action=""  class="mb-3" method="POST">
+                    {% csrf_token %}
+                    {% for field in form %}
+
+                        <div class="mb-3 {% if field.label == 'Contraseña (confirmación)' or field.label == 'Contraseña' %} form-password-toggle {% endif %} ">
+                            
+                            {% if field.label == 'Contraseña'  %}
+                            <div class="d-flex justify-content-between">
+                                <label class="form-label">{{ field.label }}</label>
+                                <a href="javascript:void(0)">
+                                <small>¿Olvidaste tu contraseña?</small>
+                                </a>
+                            </div>
+                            {% else %}
+                                <label class="form-label">{{ field.label }}</label>
+                            {% endif %}
+
+                            <div class="input-group input-group-merge">
+                                {{ field|add_class:'form-control'|attr:'autocomplete:off' }}
+                                {% if field.label == 'Contraseña (confirmación)' or field.label == 'Contraseña' %}
+                                <span class="input-group-text cursor-pointer"><i class="fas fa-eye"></i></span>
+                                {% endif %}
+                                {% if field.help_text %}
+                                <button type="button" class="btn btn-outline-primary btn-icon" data-bs-toggle="tooltip" data-bs-offset="0,4" 
+                                data-bs-placement="top" data-bs-html="true" title=""
+                                data-bs-original-title="{{ field.help_text }}">
+                                    <i class="fas fa-question"></i>
+                                </button>
+                                {% endif %}
+                              </div>
+                        </div>
+                    {% endfor %}
+                    <div class="mb-3">
+						<button class="btn btn-primary d-grid w-100" type="submit">Iniciar Sesion</button>
+					</div>
+                </form>
+                <!-- End Login Form -->
+
+                <!-- Message Register -->
+                <p class="text-center">
+					<span>¿No tienes cuenta?</span>
+					<a href="{% url 'login:newProfile' %}">
+					    <span>Registrarme</span>
+					</a>
+				</p>
+                <!-- End Message Register -->
+				
+			</div>
+		</div>
+		<!-- /Login -->
+	</div>
+</div>
+{% endblock %}
+    
