@@ -2,6 +2,7 @@ import os
 import uuid
 from django.db import models
 from django.contrib.auth.models import AbstractUser
+from PIL import Image #type:ignore
 
 # Se hereda de la base del modelo usuario, reescribiendo el modelo que tiene por defecto
 # django
@@ -30,3 +31,11 @@ class User(AbstractUser):
 
     def __str__(self):
         return self.name
+    
+    def save(self, *args, **kwargs):
+        super(User, self).save(*args, **kwargs)
+        if self.image:
+            image = Image.open(self.image.path)
+            max_size = (400, 400)
+            image.thumbnail(max_size, Image.LANCZOS)
+            image.save(self.image.path, quality=10, optimize=True)
