@@ -1,8 +1,420 @@
 {% extends 'base.html' %}
-
+{% load static %}
 
 {% block content %}
-<h1>Hola Mundo</h1>
+<div class="card bg-transparent shadow-none border-0 my-4">
+	<div class="card-body row p-0 pb-3">
+		<div class="col-12 col-md-12">
+			<h3>Es bueno verte por aqui, {{ user.first_name }} 👋🏻 </h3>
+			<div class="col-12 col-lg-7">
+				<p>El secreto de la vida esta en una buena gestion de tiempo. Nosotros te ayudamos</p>
+			</div>
+            <div class="row ">
+                <div class="col-md-6 text-center d-none d-md-block"><h6>Categorias de tareas</h6></div>
+                <div class="col-md-6 text-center d-none d-md-block"><h6>Estados de tareas</h6></div>
+            </div>
+			<div class="d-flex justify-content-between flex-wrap gap-3 me-5">
+               
+                <div class="d-flex align-items-center gap-3 me-4 me-sm-0">
+					<span class=" bg-label-danger p-2 rounded">
+                        <i class="fas fa-star"></i>
+					</span>
+					<div class="content-right">
+						<p class="mb-0">Tareas importantes</p>
+						<h4 class="text-danger mb-0">2</h4>
+                        <a href="{% url 'task:important' %}">Ver detalles <i class="fas fa-angle-right"></i></a>
+					</div>
+				</div>
+                    
+
+				<div class="d-flex align-items-center gap-3 me-4 me-sm-0">
+					<span class=" bg-label-warning p-2 rounded">
+                        <i class="fas fa-scroll"></i>
+                    
+					</span>
+					<div class="content-right">
+						<p class="mb-0">Tareas basicas</p>
+						<h4 class="text-warning mb-0">2</h4>
+                        <a href="{% url 'task:basic' %}">Ver detalles <i class="fas fa-angle-right"></i></a>
+					</div>
+				</div>
+
+				<div class="d-flex align-items-center gap-3">
+					<span class="bg-label-info p-2 rounded">
+                        <i class="fas fa-clock"></i>
+					</span>
+					<div class="content-right">
+						<p class="mb-0">Tareas pospuestas</p>
+						<h4 class="text-info mb-0">5</h4>
+                        <a href="{% url 'task:postponed' %}">Ver detalles <i class="fas fa-angle-right"></i></a>
+					</div>
+				</div>
+
+				<div class="d-flex align-items-center gap-3">
+					<span class="bg-label-danger p-2 rounded">
+                        <i class="fas fa-times-circle"></i>
+					</span>
+					<div class="content-right">
+						<p class="mb-0">Tareas incompletas </p>
+						<h4 class="text-danger mb-0">14</h4>
+                        <a href="{% url 'task:incomplete' %}">Ver detalles <i class="fas fa-angle-right"></i></a>
+
+					</div>
+				</div>
+			</div>
+		</div>
+		
+	</div>
+</div>
+
+<p>Estas son tus tareas por completar</p>
+
+
+
+
+
+
+<div class="row" data-masonry='{"percentPosition": true }'>
+    <div class="col-md-6 col-xl-4 mb-4">
+        <div class="card ">
+            <div class="card-header flex-grow-0">
+                <div class="d-flex">
+                    <div class="d-flex w-100 flex-wrap align-items-center justify-content-between gap-1">
+                        <div class="me-2">
+                            <h5 class="mb-0">Prioridad: Importante <i class="fas fa-exclamation-triangle text-danger"></i></h5>
+                            <small class="text-muted">Hasta: 07 Sep 2020 a las 10:30 AM</small>
+                        </div>
+                        <div class="dropdown d-none d-sm-block">
+                            <button class="btn p-0" type="button" id="eventList" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <i class="fas fa-angle-double-down"></i>
+                            </button>
+                            <div class="dropdown-menu dropdown-menu-end" aria-labelledby="eventList">
+                                <a class="dropdown-item" href="javascript:void(0);">Last 28 Days</a>
+                                <a class="dropdown-item" href="javascript:void(0);">Last Month</a>
+                                <a class="dropdown-item" href="javascript:void(0);">Last Year</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <img class="img-fluid" src="{% static 'img/banner_important_task.jpg' %}" alt="Card image cap">
+            <div class="featured-date mt-n4 ms-4 bg-white rounded w-px-50 shadow text-center p-1">
+                <h5 class="mb-0 text-dark">21</h5>
+                <span class="text-primary">May</span>
+            </div>
+            <div class="card-body">
+                <h5 class="text-truncate">Titulo de tarea</h5>
+                <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Repellendus fugit illum in adipisci aspernatur. Nisi deleniti consequuntur dolorem? A alias sint consectetur aut adipisci similique ab tenetur blanditiis culpa assumenda.</p>
+                <div class="d-flex gap-2">
+                    <span class="badge bg-label-primary">Categoria</span>
+                </div>
+                <div class="row mt-3">
+                    <div class="col-6">
+                        Tiempo restante 
+                        <div class="m-0 d-flex align-items-center">
+                            <h5>2 Dias, 14 horas, 2</h5>
+                       </div>
+                    </div>
+                    <div class="col-6">
+                        <div class="d-flex ">
+                            <button type="button" class="btn rounded-pill btn-icon btn-success ms-auto"
+                            data-bs-toggle="tooltip" data-bs-offset="0,4" data-bs-placement="top" data-bs-html="true" title="" 
+                            data-bs-original-title="<span>Tarea completada</span>">
+                                <i class="tf-icons fas fa-check"></i>
+                            </button>
+                            &nbsp;
+                            <button type="button" class="btn rounded-pill btn-icon btn-danger ml-1"
+                            data-bs-toggle="tooltip" data-bs-offset="0,4" data-bs-placement="top" data-bs-html="true" title="" 
+                            data-bs-original-title="<span>Tarea incompleta</span>">
+                                <i class="tf-icons fas fa-times"></i>
+                            </button>
+                            &nbsp;
+                            <button type="button" class="btn rounded-pill btn-icon btn-info ml-1"
+                            data-bs-toggle="tooltip" data-bs-offset="0,4" data-bs-placement="top" data-bs-html="true" title="" 
+                            data-bs-original-title="<span>Posponer tarea</span>">
+                                <i class="tf-icons fas fa-clock"></i>
+                            </button>
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+    </div>
     
+    <div class="col-md-6 col-xl-4 mb-4">
+        <div class="card">
+            <div class="card-header flex-grow-0">
+                <div class="d-flex">
+                    <div class="d-flex w-100 flex-wrap align-items-center justify-content-between gap-1">
+                        <div class="me-2">
+                            <h5 class="mb-0">Prioridad: Normal <i class="far fa-grin text-primary"></i> </h5>
+                            <small class="text-muted">Hasta: 07 Sep 2020 a las 10:30 AM</small>
+                        </div>
+                        <div class="dropdown d-none d-sm-block">
+                            <button class="btn p-0" type="button" id="eventList" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <i class="fas fa-angle-double-down"></i>
+                            </button>
+                            <div class="dropdown-menu dropdown-menu-end" aria-labelledby="eventList">
+                                <a class="dropdown-item" href="javascript:void(0);">Last 28 Days</a>
+                                <a class="dropdown-item" href="javascript:void(0);">Last Month</a>
+                                <a class="dropdown-item" href="javascript:void(0);">Last Year</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <img class="img-fluid" src="{% static 'img/banner_default_task.jpg' %}" alt="Card image cap">
+            <div class="featured-date mt-n4 ms-4 bg-white rounded w-px-50 shadow text-center p-1">
+                <h5 class="mb-0 text-dark">12</h5>
+                <span class="text-primary">May</span>
+            </div>
+            <div class="card-body">
+                <h5 class="text-truncate">Titulo de tarea</h5>
+                <p> A alias sint consectetur aut adipisci similique ab tenetur blanditiis culpa assumenda.</p>
+                <div class="d-flex gap-2">
+                    <span class="badge bg-label-primary">PRUEBAS</span>
+                    <span class="badge bg-label-primary">Comida</span>
+                </div>
+                <div class="row mt-3">
+                    <div class="col-6">
+                        Tiempo restante 
+                        <div class="m-0 d-flex align-items-center">
+                            <h5>2 Dias, 14 horas, 2</h5>
+                       </div>
+                    </div>
+                    <div class="col-6">
+                        <div class="d-flex ">
+                            <button type="button" class="btn rounded-pill btn-icon btn-success ms-auto"
+                            data-bs-toggle="tooltip" data-bs-offset="0,4" data-bs-placement="top" data-bs-html="true" title="" 
+                            data-bs-original-title="<span>Tarea completada</span>">
+                                <i class="tf-icons fas fa-check"></i>
+                            </button>
+                            &nbsp;
+                            <button type="button" class="btn rounded-pill btn-icon btn-danger ml-1"
+                            data-bs-toggle="tooltip" data-bs-offset="0,4" data-bs-placement="top" data-bs-html="true" title="" 
+                            data-bs-original-title="<span>Tarea incompleta</span>">
+                                <i class="tf-icons fas fa-times"></i>
+                            </button>
+                            &nbsp;
+                            <button type="button" class="btn rounded-pill btn-icon btn-info ml-1"
+                            data-bs-toggle="tooltip" data-bs-offset="0,4" data-bs-placement="top" data-bs-html="true" title="" 
+                            data-bs-original-title="<span>Posponer tarea</span>">
+                                <i class="tf-icons fas fa-clock"></i>
+                            </button>
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="col-md-6 col-xl-4 mb-4">
+        <div class="card">
+            <div class="card-header flex-grow-0">
+                <div class="d-flex">
+                    <div class="d-flex w-100 flex-wrap align-items-center justify-content-between gap-1">
+                        <div class="me-2">
+                            <h5 class="mb-0">Prioridad: Normal, se pospuso 2 Dias <i class="far fa-clock text-info"></i> </h5>
+                            <small class="text-muted">Hasta: 07 Sep 2020 a las 10:30 AM</small>
+                        </div>
+                        <div class="dropdown d-none d-sm-block">
+                            <button class="btn p-0" type="button" id="eventList" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <i class="fas fa-angle-double-down"></i>
+                            </button>
+                            <div class="dropdown-menu dropdown-menu-end" aria-labelledby="eventList">
+                                <a class="dropdown-item" href="javascript:void(0);">Last 28 Days</a>
+                                <a class="dropdown-item" href="javascript:void(0);">Last Month</a>
+                                <a class="dropdown-item" href="javascript:void(0);">Last Year</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <img class="img-fluid" src="{% static 'img/banner_postponed_task.jpg' %}" alt="Card image cap">
+            <div class="featured-date mt-n4 ms-4 bg-white rounded w-px-50 shadow text-center p-1">
+                <h5 class="mb-0 text-dark">12</h5>
+                <span class="text-primary">May</span>
+            </div>
+            <div class="card-body">
+                <h5 class="text-truncate">Titulo de tarea</h5>
+                <p> A alias sint consectetur aut adipisci similique ab tenetur blanditiis culpa assumenda. Lorem ipsum dolor sit amet consectetur, adipisicing elit. Tenetur sequi debitis illo. Molestias unde error in est aliquid fugit deleniti illum totam et sint! Voluptatum incidunt error ad recusandae inventore?</p>
+                <div class="d-flex gap-2">
+                    <span class="badge bg-label-primary">PRUEBAS</span>
+                    <span class="badge bg-label-primary">Comida</span>
+                </div>
+                <div class="row mt-3">
+                    <div class="col-6">
+                        Tiempo restante 
+                        <div class="m-0 d-flex align-items-center">
+                            <h5>2 Dias, 14 horas, 2</h5>
+                       </div>
+                    </div>
+                    <div class="col-6">
+                        <div class="d-flex ">
+                            <button type="button" class="btn rounded-pill btn-icon btn-success ms-auto"
+                            data-bs-toggle="tooltip" data-bs-offset="0,4" data-bs-placement="top" data-bs-html="true" title="" 
+                            data-bs-original-title="<span>Tarea completada</span>">
+                                <i class="tf-icons fas fa-check"></i>
+                            </button>
+                            &nbsp;
+                            <button type="button" class="btn rounded-pill btn-icon btn-danger ml-1"
+                            data-bs-toggle="tooltip" data-bs-offset="0,4" data-bs-placement="top" data-bs-html="true" title="" 
+                            data-bs-original-title="<span>Tarea incompleta</span>">
+                                <i class="tf-icons fas fa-times"></i>
+                            </button>
+                            &nbsp;
+                            <button type="button" class="btn rounded-pill btn-icon btn-info ml-1"
+                            data-bs-toggle="tooltip" data-bs-offset="0,4" data-bs-placement="top" data-bs-html="true" title="" 
+                            data-bs-original-title="<span>Posponer tarea</span>">
+                                <i class="tf-icons fas fa-clock"></i>
+                            </button>
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-6 col-xl-4 mb-4">
+        <div class="card">
+            <div class="card-header flex-grow-0">
+                <div class="d-flex">
+                    <div class="d-flex w-100 flex-wrap align-items-center justify-content-between gap-1">
+                        <div class="me-2">
+                            <h5 class="mb-0">Prioridad: Normal <i class="far fa-grin text-primary"></i> </h5>
+                            <small class="text-muted">Hasta: 07 Sep 2020 a las 10:30 AM</small>
+                        </div>
+                        <div class="dropdown d-none d-sm-block">
+                            <button class="btn p-0" type="button" id="eventList" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <i class="fas fa-angle-double-down"></i>
+                            </button>
+                            <div class="dropdown-menu dropdown-menu-end" aria-labelledby="eventList">
+                                <a class="dropdown-item" href="javascript:void(0);">Last 28 Days</a>
+                                <a class="dropdown-item" href="javascript:void(0);">Last Month</a>
+                                <a class="dropdown-item" href="javascript:void(0);">Last Year</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <img class="img-fluid" src="{% static 'img/banner_default_task.jpg' %}" alt="Card image cap">
+            <div class="featured-date mt-n4 ms-4 bg-white rounded w-px-50 shadow text-center p-1">
+                <h5 class="mb-0 text-dark">12</h5>
+                <span class="text-primary">May</span>
+            </div>
+            <div class="card-body">
+                <h5 class="text-truncate">Titulo de tarea</h5>
+                <p> A alias sint consectetur aut adipisci similique ab tenetur blanditiis culpa assumenda.</p>
+                <div class="d-flex gap-2">
+                    <span class="badge bg-label-primary">PRUEBAS</span>
+                    <span class="badge bg-label-primary">Comida</span>
+                </div>
+                <div class="row mt-3">
+                    <div class="col-6">
+                        Tiempo restante 
+                        <div class="m-0 d-flex align-items-center">
+                            <h5>2 Dias, 14 horas, 2</h5>
+                       </div>
+                    </div>
+                    <div class="col-6">
+                        <div class="d-flex ">
+                            <button type="button" class="btn rounded-pill btn-icon btn-success ms-auto"
+                            data-bs-toggle="tooltip" data-bs-offset="0,4" data-bs-placement="top" data-bs-html="true" title="" 
+                            data-bs-original-title="<span>Tarea completada</span>">
+                                <i class="tf-icons fas fa-check"></i>
+                            </button>
+                            &nbsp;
+                            <button type="button" class="btn rounded-pill btn-icon btn-danger ml-1"
+                            data-bs-toggle="tooltip" data-bs-offset="0,4" data-bs-placement="top" data-bs-html="true" title="" 
+                            data-bs-original-title="<span>Tarea incompleta</span>">
+                                <i class="tf-icons fas fa-times"></i>
+                            </button>
+                            &nbsp;
+                            <button type="button" class="btn rounded-pill btn-icon btn-info ml-1"
+                            data-bs-toggle="tooltip" data-bs-offset="0,4" data-bs-placement="top" data-bs-html="true" title="" 
+                            data-bs-original-title="<span>Posponer tarea</span>">
+                                <i class="tf-icons fas fa-clock"></i>
+                            </button>
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-6 col-xl-4 mb-4">
+        <div class="card ">
+            <div class="card-header flex-grow-0">
+                <div class="d-flex">
+                    <div class="d-flex w-100 flex-wrap align-items-center justify-content-between gap-1">
+                        <div class="me-2">
+                            <h5 class="mb-0">Prioridad: Importante <i class="fas fa-exclamation-triangle text-danger"></i></h5>
+                            <small class="text-muted">Hasta: 07 Sep 2020 a las 10:30 AM</small>
+                        </div>
+                        <div class="dropdown d-none d-sm-block">
+                            <button class="btn p-0" type="button" id="eventList" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <i class="fas fa-angle-double-down"></i>
+                            </button>
+                            <div class="dropdown-menu dropdown-menu-end" aria-labelledby="eventList">
+                                <a class="dropdown-item" href="javascript:void(0);">Last 28 Days</a>
+                                <a class="dropdown-item" href="javascript:void(0);">Last Month</a>
+                                <a class="dropdown-item" href="javascript:void(0);">Last Year</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <img class="img-fluid" src="{% static 'img/banner_important_task.jpg' %}" alt="Card image cap">
+            <div class="featured-date mt-n4 ms-4 bg-white rounded w-px-50 shadow text-center p-1">
+                <h5 class="mb-0 text-dark">21</h5>
+                <span class="text-primary">May</span>
+            </div>
+            <div class="card-body">
+                <h5 class="text-truncate">Titulo de tarea</h5>
+                <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Repellendus fugit illum in adipisci aspernatur. Nisi deleniti consequuntur dolorem? A alias sint consectetur aut adipisci similique ab tenetur blanditiis culpa assumenda.</p>
+                <div class="d-flex gap-2">
+                    <span class="badge bg-label-primary">Categoria</span>
+                </div>
+                <div class="row mt-3">
+                    <div class="col-6">
+                        Tiempo restante 
+                        <div class="m-0 d-flex align-items-center">
+                            <h5>2 Dias, 14 horas, 2</h5>
+                       </div>
+                    </div>
+                    <div class="col-6">
+                        <div class="d-flex ">
+                            <button type="button" class="btn rounded-pill btn-icon btn-success ms-auto"
+                            data-bs-toggle="tooltip" data-bs-offset="0,4" data-bs-placement="top" data-bs-html="true" title="" 
+                            data-bs-original-title="<span>Tarea completada</span>">
+                                <i class="tf-icons fas fa-check"></i>
+                            </button>
+                            &nbsp;
+                            <button type="button" class="btn rounded-pill btn-icon btn-danger ml-1"
+                            data-bs-toggle="tooltip" data-bs-offset="0,4" data-bs-placement="top" data-bs-html="true" title="" 
+                            data-bs-original-title="<span>Tarea incompleta</span>">
+                                <i class="tf-icons fas fa-times"></i>
+                            </button>
+                            &nbsp;
+                            <button type="button" class="btn rounded-pill btn-icon btn-info ml-1"
+                            data-bs-toggle="tooltip" data-bs-offset="0,4" data-bs-placement="top" data-bs-html="true" title="" 
+                            data-bs-original-title="<span>Posponer tarea</span>">
+                                <i class="tf-icons fas fa-clock"></i>
+                            </button>
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
 {% endblock %}
     
