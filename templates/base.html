@@ -25,6 +25,13 @@
         <!-- Helpers -->
         <script src="{% static 'libs/sneat/vendor/js/helpers.js' %}"></script>
         <script src="{% static 'libs/sneat/js/config.js' %}"></script>
+
+		<!-- Css Custom -->
+		{% block css %}
+			
+		{% endblock %}
+		<!-- End Css Custom -->
+			
 	</head>
 
 	<body>
@@ -71,8 +78,12 @@
 		<!-- Main JS -->
 		<script src="{% static 'libs/sneat/js/main.js' %}"></script>
 		<!-- Page JS -->
+		<script src="{% static 'libs/masonry/masonry.js' %}"></script>
+
 		<!--<script src="../assets/js/dashboards-analytics.js"></script>-->
 		<!-- Place this tag in your head or just before your close body tag. -->
+
+
 
         <!-- Custom Scripts -->
         {% block scripts %}
