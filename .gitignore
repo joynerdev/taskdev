@@ -35,5 +35,8 @@ Thumbs.db
 media/profile_img/*.jpg
 media/profile_img/*.png
 
+media/tasks_images/*.jpg
+media/tasks_images/*.png
+
 # Ignorar archivos específicos
 db.sqlite3
