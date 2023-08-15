@@ -1,13 +1,23 @@
 from random import randint
-from django.views.generic import TemplateView
+from django.views.generic import TemplateView, CreateView
 from django.contrib.auth.mixins import LoginRequiredMixin
 
 from functions.mixins import ContextMixin, ValidateUserDataRegister
+from tasks.forms import TaskForm
 
 class HomeView(LoginRequiredMixin, ValidateUserDataRegister, ContextMixin, TemplateView):
     template_name = 'home.html'
     custom_context = {
         'app_name': 'Mis tareas',
+        'range_for': range(1, randint(1, 11))
+    }
+
+class NewTask(LoginRequiredMixin, ValidateUserDataRegister, ContextMixin, CreateView):
+    template_name = 'new_task.html'
+    form_class = TaskForm
+
+    custom_context = {
+        'app_name': 'Nueva tarea',
         'range_for': range(1, randint(1, 11))
     }
 
