@@ -30,7 +30,7 @@ class User(AbstractUser):
         ordering = ["id"]
 
     def __str__(self):
-        return self.name
+        return self.username
     
     def save(self, *args, **kwargs):
         super(User, self).save(*args, **kwargs)
