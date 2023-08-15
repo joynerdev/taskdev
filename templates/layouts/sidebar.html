@@ -16,13 +16,25 @@
         <li class="menu-header small text-uppercase">
             <span class="menu-header-text">Bienvenido</span>
         </li>
-        <!-- Dashboard -->
-        <li class="menu-item active">
-            <a href="index.html" class="menu-link">
+
+        <!-- Task list -->
+        <li class="menu-item {% if request.resolver_match.view_name == 'task:home' %}active{% endif %}">
+            <a href="{% if request.resolver_match.view_name == 'task:home' %}javascript:void(0){% else %}{% url 'task:home' %}{% endif %}" class="menu-link">
                 <i class="fas fa-list-ol menu-icon tf-icons"></i>
                 <div data-i18n="Analytics"> Mis tareas</div>
             </a>
         </li>
+        <!-- End task list -->
+
+        <!-- New task -->
+        <li class="menu-item {% if request.resolver_match.view_name == 'task:new' %}active{% endif %}">
+            <a href="{% if request.resolver_match.view_name == 'task:new' %}javascript:void(0){% else %}{% url 'task:new' %}{% endif %}" class="menu-link">
+                <i class="fas fa-plus-circle menu-icon tf-icons"></i>
+                <div data-i18n="Analytics"> Nueva tarea</div>
+            </a>
+        </li>
+        <!-- End new task -->
+
         
         {% comment %}
             <!-- Layouts -->
